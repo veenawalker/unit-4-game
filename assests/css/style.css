@@ -1,0 +1,38 @@
+header {
+    background-color: rgb(110, 111, 112);
+    text-align: center;
+
+}
+
+.jumbotron {
+    background-color: beige;
+    box-align: center;
+
+
+}
+
+#bg {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+      
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+  img { 
+
+    height: 50px;
+    width: 50px;
+  
+
+  }
+
+/* html { 
+    background: url(https://videohive.net/item/white-triangle-polygon-background/22098022) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  } */
