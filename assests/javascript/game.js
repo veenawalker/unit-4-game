@@ -1,167 +1,181 @@
-//the player will guess with numbers instead of letters. 
-
-// 3. Here's how the app works:
-
-   //There will be four crystals displayed as buttons on the page. 
-   $(":button")
-
-//    * The player will be shown a random number at the start of the game. // * The random number shown at the start of the game should be between 19 - 120.
 
 
-var minNumber = 19;
-var maxNumber = 120
+var wins = 0;
+var losses = 0;
+var randomNumber;
+var total = 0;
+var diamondValue = randomNumberFromRange(1, 12);
+var triangleValue = randomNumberFromRange(1, 12);
+var threeValue = randomNumberFromRange(1, 12);
+var hexValue = randomNumberFromRange(1, 12);
 
-var randomNumber = randomNumberFromRange(minNumber, maxNumber);
+var randomNumber = randomNumberFromRange(19, 120);
 
-function randomNumberFromRange(min,max)
-{
+
+//Random number function
+function randomNumberFromRange(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
+$("#randomNumber").text(randomNumber); 
 
-var win = 0;
-var loss = 0;
-var goal = 36;
-var total = 0;
-var redValue = randomNumberFromRange(19, 120)//6;
-var pinkValue = randomNumberFromRange(19, 120)//6;
 
-// <div id='redcrystal'>...</div>
 
-function resetGame() {
-    //...
-}
 
-function checkForWinOrLoss() {
-    // .... compare total to goal
-    // if > goal -> loss++ then resetGame()
-    // if === goal -> win++ then resetGame()
-    // otherwise do nothing
-}
 
-$("#redcrystal").on("click", function() {
-    total = total + redValue;
-    checkForWinOrLoss();
+
+
+
+
+// function checkForWinOrLoss() {
+//     .... compare total to goal
+//     if > goal -> loss++ then resetGame()
+//     if === goal -> win++ then resetGame()
+//     otherwise do nothing
+// }
+
+// //    * When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+
+$("#crystal2").on("click", function() {
+    // total = total + diamondValue;
+    total += diamondValue;
+    // checkForWinOrLoss();
+    console.log(total);
+    $("#totalScore").html(total);
+    if (totalScore > randomNumber) {
+        losses++
+        youLose();
+     }
+     else if (totalScore === randomNumber) {
+             wins++
+             youWin();
+        
+     }
 })
-$("#pinkcrystal").on("click", function() {
-    total = total + pinkValue;
-    checkForWinOrLoss();
+$("#crystal1").on("click", function() {
+    total = total + triangleValue;
+    // checkForWinOrLoss();
+    console.log(total);
+    $("#totalScore").html(total);
+    if (totalScore > randomNumber) {
+        losses++
+        youLose();
+     }
+     else if (totalScore === randomNumber) {
+             wins++
+             youWin();
+        
+     }
 })
 
-//    * When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+$("#crystal3").on("click", function() {
+    total = total + threeValue;
+  
+    console.log(total)
+    $("#totalScore").html(total);
+    if (totalScore > randomNumber) {
+        losses++
+        youLose();
+     }
+     else if (totalScore === randomNumber) {
+             wins++
+             youWin();
+        
+     }
+})
+$("#crystal4").on("click", function() {
+    total = total + hexValue;
+    // checkForWinOrLoss();
+    console.log(total)
+    $("#totalScore").html(total);
+    if (totalScore > randomNumber) {
+        losses++
+        youLose();
+     }
+     else if (totalScore === randomNumber) {
+             wins++
+             youWin();
+        
+     }
+})
 
-  //There will be four crystals displayed as buttons on the page. 
-  $(":button")
+function newGame() {
+    randomNumberFromRange = 0;
+    totalScore = 0;
+    $("#randomNumber").text(randomNumber);
+    $("#totalScore").text(totalScore);
+    $("#crystal1").attr( diamondValue);
+    $("#crystal2").attr( triangleValue);
+    $("#crystal3").attr(threeValue);
+    $("#crystal4").attr(hexValue);
+    $("#wins").text(wins);
+    $("#losses").text(losses);
+    $("#winOrLose").text("");
 
-//I would just assign a class to the button...
-
-var newButton = $("<button>");
-newButton.addClass("ButtonClass");
-
-$("#buttonId").button({
-
-    icons: {primary: null},
-    text: false
-
-}).addClass("ButtonClass");
-//Then your CSS class could look something like this...
-
-.ButtonClass
-{
-    background-image: url(../images/Button.png);   
-    background-repeat: no-repeat; 
-    border: none;    
+   console.log(newGame);
 }
 
+$(".btn").on("click", function() {
+    newGame();
+});
 
-
-    //  * Your game will hide this amount until the player clicks a crystal.
-
-    //  * When they do click one, update the player's score counter.
-
-    <button onclick="myFunction()">Click me</button>
-
-    <script>
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
-}
-</script>
-
-or document.querySelector("#gameID").innerHTML = htmlGame;
-
-var computerRandom = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-    
-//  * When they do click one, update the player's score counter.
-
-if (guess === computerRandom) {
-  wins++;
-  won = true;
-  tries=9;
-}
-if (guessesSoFar == []) {
-  guessesSoFar = guess;
-} 
-else {
-  guessesSoFar = guessesSoFar + "," + guess;
-}
-tries++;
-guessLeft--;
-
-
-if (tries > 8) {
- guessLeft = 9;
- guessesSoFar = "";
- tries = 0;
-    
- if (won === false) {
-   losses++;
- } 
- else {
-   won = false;
- }
-}
-
-//    * The player wins if their total score matches the random number from the beginning of the game.
-
-if (playerClicks === computerRandom) {
+function youWin() {
+    $("#winOrLose").text("YOU WIN!");
     wins++;
-    won = true;
-    tries=9;
-  }
+    $("#wins").text(wins);
+    newGame();
+}
+
+function youLose() {
+    $("#winOrLose").text("YOU LOSE");
+    losses++;
+    $("#losses").text(losses);
+    newGame();
+}
+ 
+//Player win or loose 
+// if (totalScore > randomNumber) {
+//    losses++
+//    youLose();
+// }
+// else if (totalScore === randomNumber) {
+//         wins++
+//         youWin();
+   
+// }
+
+
+
+// if (total === randomNumber) {
+//     wins++;
+ 
+//   }
 
 
 //    * The player loses if their score goes above the random number.
 
-if (playerClicks === computerRandom) {
-    wins++;
-    won = true;
-    tries=9;
-  }
-//    * The game restarts whenever the player wins or loses.
+// if (total === randomNumber) {
+//     wins++;
+// }
+    
 
-    //  * When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
+// function resetGame {
 
-//    * The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
+// var newButton = $("<button>");
+// newButton.addClass("ButtonClass");
 
-var htmlGame =
-  "<p>Wins " + wins + "</p>" + 
-  "<p>Losses " + losses + "</p>";
+// $("#buttonId").button({
 
-document.querySelector("#gameID").innerHTML = htmlGame;
-}
+//     icons: {primary: null},
+//     text: false
+
+// }).addClass("ButtonClass");
+// //Then your CSS class could look something like this...
+
+// .ButtonClass
+// {
+//     background-image: url(../images/Button.png);   
+//     background-repeat: no-repeat; 
+//     border: none;    
+// }
 
 
- //  * When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
-
-
-// * Each crystal should have a random hidden value between 1 - 12.
-
-var minNumber = 1;
-var maxNumber = 12;
-
-var randomNumber = randomNumberFromRange(minNumber, maxNumber);
-
-function randomNumberFromRange(min,max)
-{
-    return Math.floor(Math.random()*(max-min+1)+min);
-}

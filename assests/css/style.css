@@ -3,13 +3,18 @@ header {
     text-align: center;
 
 }
-
-.jumbotron {
-    background-color: beige;
-    box-align: center;
-
-
+body { 
+	min-height: 100vh;
+    background: url("../images/polygonal.jpg");
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
 }
+
+
+
+
+
 
 #bg {
     position: fixed; 
@@ -20,11 +25,11 @@ header {
     min-width: 100%;
     min-height: 100%;
   }
-  
+
   img { 
 
-    height: 50px;
-    width: 50px;
+    height: 90px;
+    width: 90px;
   
 
   }
